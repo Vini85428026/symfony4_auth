@@ -46,8 +46,11 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/login", name="login")
+     * @Route("/admin/login", name="login")
      * @Template("default/login.html.twig")
+     * @param Request $request
+     * @param AuthenticationUtils $authUtils
+     * @return array
      */
     public function login(Request $request, AuthenticationUtils $authUtils)
     {
