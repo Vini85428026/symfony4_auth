@@ -24,26 +24,37 @@ class DefaultController extends Controller
 
     /**
      * @Route("/admin", name="admin")
+     * @Template("default/index.html.twig")
      */
     public function admin()
     {
-        return new Response("<html><body><h1>Admin page!</h1></body></html>");
+        $texto = "User is not admin!";
+
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $texto = "User is admin!";
+        }
+
+        return [
+            "texto" => $texto
+        ];
     }
 
     /**
      * @Route("/admin/dashboard", name="dashboard")
+     * @Template("default/dashboard.html.twig")
      */
     public function dashboard()
     {
-        return new Response("<html><body><h1>Admin dashboard page!</h1></body></html>");
+        return [];
     }
 
     /**
      * @Route("/admin/relatorios", name="relatorios")
+     * @Template("default/relatorios.html.twig")
      */
     public function relatorios()
     {
-        return new Response("<html><body><h1>Admin relatorios page!</h1></body></html>");
+        return [];
     }
 
     /**
