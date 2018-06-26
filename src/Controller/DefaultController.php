@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -61,5 +62,40 @@ class DefaultController extends Controller
             'error' => $error,
             'last_username' => $lastUsername
         ];
+    }
+
+    /**
+     * @param Request $request
+     * @Route("/insert")
+     * @return Response
+     */
+    public function insert(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $user = new User();
+        $user->setUsername('vinic');
+        $user->setEmail('vini@email.com');
+        $user->setRoles("ROLE_USER");
+
+        $encoder = $this->get('security.password_encoder');
+        $pass = $encoder->encodePassword($user, "abc");
+        $user->setPassword($pass);
+        $em->persist($user);
+
+        $user2 = new User();
+        $user2->setUsername('admin');
+        $user2->setEmail('adm@email.com');
+        $user2->setRoles("ROLE_ADMIN");
+
+        $encoder = $this->get('security.password_encoder');
+        $pass = $encoder->encodePassword($user2, "qwe");
+        $user2->setPassword($pass);
+        $em->persist($user2);
+
+        $em->flush();
+
+        return new Response("<h1>Inserido com sucesso!</h1>");
+
     }
 }

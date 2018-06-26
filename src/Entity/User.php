@@ -50,7 +50,7 @@ class User implements UserInterface
     /**
      * @return string
      */
-    public function getUsername(): string
+    public function getUsername()
     {
         return $this->username;
     }
@@ -58,7 +58,7 @@ class User implements UserInterface
     /**
      * @param string $username
      */
-    public function setUsername(string $username): void
+    public function setUsername($username)
     {
         $this->username = $username;
     }
@@ -66,7 +66,7 @@ class User implements UserInterface
     /**
      * @return string
      */
-    public function getPassword(): string
+    public function getPassword()
     {
         return $this->password;
     }
@@ -74,7 +74,7 @@ class User implements UserInterface
     /**
      * @param string $password
      */
-    public function setPassword(string $password): void
+    public function setPassword($password)
     {
         $this->password = $password;
     }
@@ -82,7 +82,7 @@ class User implements UserInterface
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmail()
     {
         return $this->email;
     }
@@ -90,7 +90,7 @@ class User implements UserInterface
     /**
      * @param string $email
      */
-    public function setEmail(string $email): void
+    public function setEmail($email)
     {
         $this->email = $email;
     }
@@ -98,7 +98,7 @@ class User implements UserInterface
     /**
      * @return array
      */
-    public function getRoles(): array
+    public function getRoles()
     {
         return $this->roles;
     }
@@ -106,10 +106,9 @@ class User implements UserInterface
     /**
      * @param array $roles
      */
-    public function setRoles(array $roles): void
+    public function setRoles($roles)
     {
         $this->roles[] = $roles;
-        return $this;
     }
 
     /**
